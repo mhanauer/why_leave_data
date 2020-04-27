@@ -12,7 +12,7 @@ Then lower case last variable
 Then seperate by comma
 Then figure out how to count them (grab n's from different columns)
 ```{r}
-
+n = dim(why_leave_data)[1]
 describe.factor(why_leave_data$State)
 why_leave_dat = why_leave_data[,c(3,5)]
 why_leave_dat
@@ -39,13 +39,16 @@ opp_advance = why_leave_dat[c(6, 11,12,18),]
 opp_advance_des = round(apply(opp_advance[,1:2], 2, sum),2)
 opp_advance_des
 
-theme_results = data.frame(poor_management_des, outside_centerstone_des , lack_pay_des, opp_advance_des)
+### Work life balance / Commute 4, 9, 13, 16, 20
+work_life_commute =  why_leave_dat[c(4, 9, 13, 17, 20),]
+work_life_commute_des = round(apply(work_life_commute[,1:2], 2, sum),2)
+
+theme_results = data.frame(poor_management_des, outside_centerstone_des , lack_pay_des, opp_advance_des, work_life_commute_des)
 theme_results = t(theme_results)
 themes = rownames(theme_results)
 theme_results = data.frame(themes, theme_results)
 theme_results
 write.csv(theme_results, "theme_results.csv", row.names = FALSE)
+
+200*1.4
 ```
-
-
-
